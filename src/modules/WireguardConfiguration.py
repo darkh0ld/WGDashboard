@@ -549,7 +549,7 @@ class WireguardConfiguration:
                         self.peersTable.insert().values(newPeer)
                     )
             for p in peers:
-                presharedKeyExist = len(p['preshared_key']) > 0
+                presharedKeyExist = p.get('preshared_key') is not None and len(p['preshared_key']) > 0
                 rd = random.Random()
                 uid = str(uuid.UUID(int=rd.getrandbits(128), version=4))
                 if presharedKeyExist:
@@ -607,7 +607,7 @@ class WireguardConfiguration:
                         )
                     )
 
-                    presharedKeyExist = len(restrictedPeer['preshared_key']) > 0
+                    presharedKeyExist = restrictedPeer.get('preshared_key') is not None and len(restrictedPeer['preshared_key']) > 0
                     rd = random.Random()
                     uid = str(uuid.UUID(int=rd.getrandbits(128), version=4))
                     if presharedKeyExist:
