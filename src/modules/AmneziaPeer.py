@@ -1,7 +1,6 @@
 import os
 from flask import current_app
 import random
-import re
 import subprocess
 import uuid
 
